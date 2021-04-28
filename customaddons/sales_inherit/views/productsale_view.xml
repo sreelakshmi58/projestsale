@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record id="saleorder_view_form" model="ir.ui.view">
+        <field name ="name">saleorder.view.form</field>
+        <field name="model">productsale.list</field>
+        <field name="arch" type="xml">
+            <form string="productsale form" class="">
+                <sheet>
+                      <header>
+                            <field name="state" widget="statusbar"/>
+                            <button name="confirm" type="object" string="confirm" class="oe_highlight" attrs=" {'invisible':[('state','=','confirm')]}"/>
+                         </header>
+
+                    <group>
+                        <group>
+
+                            <field name="customer_nameid" widget="customer_details_many2one"/>
+                        </group>
+                        <group><field name="date"/></group>
+                    </group>
+
+                    <field name="sales_order_line_ids" >
+                        <tree editable="bottom">
+                            <field name="product_id" force_save="1" required="1"/>
+                            <field name="price"/>
+                            <field name="quantity"/>
+                            <field name="sub_total"/>
+                        </tree>
+
+                    </field>
+
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="price_total"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="saleorder_view_tree" model="ir.ui.view">
+        <field name="name">saleorder.view.tree</field>
+        <field name="model">productsale.list</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="customer_nameid"/>
+                <field name="date"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+   <record id="product_sale_list_action" model="ir.actions.act_window">
+    <field name="name">Productsale_details</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">productsale.list</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+        <p class="oe_view_no_content_create">
+
+        </p>
+        <p>
+        </p>
+    </field>
+</record>
+
+    <menuitem
+        id="sales_root_menu"
+        name="Sales"
+        sequence="10"/>
+    <menuitem
+        id="product_menu"
+        name="Sales Order details"
+        action="product_sale_list_action"
+        parent="sales_root_menu"
+        sequence="16"/>
+</odoo>

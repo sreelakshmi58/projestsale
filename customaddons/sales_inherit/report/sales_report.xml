@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="report_sales">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <h1 >Sales Report</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                     <td name="td_customer_nameid_label"><strong>Name:</strong></td>
+                                     <td name="td_customer_nameid">
+                                    <span t-field="o.customer_nameid"/>
+                                     </td>
+                                    <br></br>
+                                    </tr>
+                                <tr>
+                                    <td name="td_date_label"><strong>Quotation Date:</strong></td>
+                                    <td name="td_date">
+                                    <span t-field="o.date"/>
+                                </td>
+                                </tr>
+
+                            </thead>
+                        </table>
+
+                        <br></br>
+                        <br></br>
+                         <table class="table table-sm o_main_table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>SubTotal</th>
+                                </tr>
+                            </thead>
+                               <tbody class="sale_tbody">
+
+<!--                                    <t t-set="current_subtotal" t-value="0"/>-->
+                                    <t t-foreach="o.sales_order_line_ids" t-as="line">
+                                        <tr>
+                                            <td name="td_product_id"><span t-field="line.product_id"/></td>
+                                        <td name="td_price"><span t-field="line.price"/></td>
+                                        <td name="td_quantity"><span t-field="line.quantity"/></td>
+                                        <td name="td_sub_total"><span t-field="line.sub_total"/></td>
+                                        </tr>
+                                    </t>
+                               </tbody>
+
+                         </table>
+
+                         <tr class="border-black o_total" style="">
+                                <td name="td_price_total_label" class="text-right"><strong>Total</strong></td>
+                                <td name="td_price_total" class="text-right">
+                                    <span t-field="o.price_total"/>
+                                </td>
+                            </tr>
+
+
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

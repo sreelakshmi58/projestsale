@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+<!--form view-->
+    <record id="product_view_form" model="ir.ui.view">
+        <field name ="name">product.view.form</field>
+        <field name="model">product.list</field>
+        <field name="arch" type="xml">
+            <form string="product form" class="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                         <field name="currency_id"/>
+                         <field name="lst_price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="product_view_tree" model="ir.ui.view">
+        <field name="name">product.view.tree</field>
+        <field name="model">product.list</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="currency_id"/>
+                <field name="lst_price"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_details_action" model="ir.actions.act_window">
+        <field name="name">Product Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+  <menuitem
+        id="sales_root_menu"
+        name="Sales"
+        sequence="10"/>
+
+    <menuitem
+        id="sub_menu_product"
+        name="Product"
+        parent="sales_root_menu"
+        action="product_details_action"
+        sequence="10"/>
+    <menuitem
+        id="order_menu"
+        name="Product Creation"
+        action="product_details_action"
+        parent="sub_menu_product"
+        sequence="10"/>
+
+
+
+</odoo>

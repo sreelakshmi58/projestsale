@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <report
+                id="report_saleproduct_record"
+                model="productsale.list"
+                string="Sales Report"
+                report_type="qweb-pdf"
+                name="sales_inherit.report_sales"
+                file="sales_inherit.report_sales"/>
+</odoo>
